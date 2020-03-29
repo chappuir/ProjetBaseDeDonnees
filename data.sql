@@ -1,5 +1,5 @@
-insert into CLASSE values (1, 'éco');
-insert into CLASSE values (2, 'première');
+insert into CLASSE values (1, 'eco');
+insert into CLASSE values (2, 'premiere');
 insert into CLASSE values (3, 'affaire');
 
 

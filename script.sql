@@ -101,7 +101,7 @@ create table MODELE_AVION (
 	nbPilotesNecessaires integer not null,
 	idConstructeur integer not null,
 	constraint pk_MODELE_AVION_id primary key (idModele),
-	constraint fk_MODELE_AVION_to_CONSTRUCTEUR foreign key (idConstructeur) references CONSTRUCTEUR (idConstructeur)
+	constraint fk_MODELE_AVION_to_CONS foreign key (idConstructeur) references CONSTRUCTEUR (idConstructeur)
 	);
 	
 create table AVION (
