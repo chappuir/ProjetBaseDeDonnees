@@ -14,12 +14,12 @@ import java.sql.Date;
 public class Reservation {
     private int idReservation;
     private Date dateRes;
-    private Client idClient;
+    private Client client;
 
-    public Reservation(int idReservation, Date dateRes, Client idClient) {
+    public Reservation(int idReservation, Date dateRes, Client client) {
         this.idReservation = idReservation;
         this.dateRes = dateRes;
-        this.idClient = idClient;
+        this.client = client;
     }
 
     public int getIdReservation() {
@@ -38,15 +38,13 @@ public class Reservation {
         this.dateRes = dateRes;
     }
 
-    public Client getIdClient() {
-        return idClient;
+    public Client getClient() {
+        return client;
     }
 
-    public void setIdClient(Client idClient) {
-        this.idClient = idClient;
+    public void setClient(Client client) {
+        this.client = client;
     }
-
     
-    
-    
+   
 }

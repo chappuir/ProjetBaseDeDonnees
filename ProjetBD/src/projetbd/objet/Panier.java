@@ -11,13 +11,13 @@ package projetbd.objet;
  */
 public class Panier {
     private int idPanier;
-    private Vol idVol;
-    private Reservation idReservation;
+    private Vol vol;
+    private Reservation reservation;
 
-    public Panier(int idPanier, Vol idVol, Reservation idReservation) {
+    public Panier(int idPanier, Vol vol, Reservation reservation) {
         this.idPanier = idPanier;
-        this.idVol = idVol;
-        this.idReservation = idReservation;
+        this.vol = vol;
+        this.reservation = reservation;
     }
 
     public int getIdPanier() {
@@ -28,21 +28,22 @@ public class Panier {
         this.idPanier = idPanier;
     }
 
-    public Vol getIdVol() {
-        return idVol;
+    public Vol getVol() {
+        return vol;
     }
 
-    public void setIdVol(Vol idVol) {
-        this.idVol = idVol;
+    public void setVol(Vol vol) {
+        this.vol = vol;
     }
 
-    public Reservation getIdReservation() {
-        return idReservation;
+    public Reservation getReservation() {
+        return reservation;
     }
 
-    public void setIdReservation(Reservation idReservation) {
-        this.idReservation = idReservation;
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
-    
+
+   
     
 }

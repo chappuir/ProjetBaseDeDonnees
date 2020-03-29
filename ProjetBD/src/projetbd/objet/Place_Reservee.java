@@ -10,30 +10,30 @@ package projetbd.objet;
  * @author JDufo
  */
 public class Place_Reservee {
-    private Place idPlace;
-    private Panier idPanier;
+    private Place place;
+    private Panier panier;
     private int prix;
 
-    public Place_Reservee(Place idPlace, Panier idPanier, int prix) {
-        this.idPlace = idPlace;
-        this.idPanier = idPanier;
+    public Place_Reservee(Place place, Panier panier, int prix) {
+        this.place = place;
+        this.panier = panier;
         this.prix = prix;
     }
 
-    public Place getIdPlace() {
-        return idPlace;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setIdPlace(Place idPlace) {
-        this.idPlace = idPlace;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
-    public Panier getIdPanier() {
-        return idPanier;
+    public Panier getPanier() {
+        return panier;
     }
 
-    public void setIdPanier(Panier idPanier) {
-        this.idPanier = idPanier;
+    public void setPanier(Panier panier) {
+        this.panier = panier;
     }
 
     public int getPrix() {
@@ -43,6 +43,7 @@ public class Place_Reservee {
     public void setPrix(int prix) {
         this.prix = prix;
     }
+
     
     
 }

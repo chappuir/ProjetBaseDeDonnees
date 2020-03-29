@@ -14,14 +14,14 @@ public class Modele_Avion {
     private String nomModele;
     private int nbHeuresNecessairesPilotage;
     private int nbPilotesNecessaires;
-    private Constructeur idConstructeur;
+    private Constructeur constructeur;
 
-    public Modele_Avion(int idModele, String nomModele, int nbHeuresNecessairesPilotage, int nbPilotesNecessaires, Constructeur idConstructeur) {
+    public Modele_Avion(int idModele, String nomModele, int nbHeuresNecessairesPilotage, int nbPilotesNecessaires, Constructeur constructeur) {
         this.idModele = idModele;
         this.nomModele = nomModele;
         this.nbHeuresNecessairesPilotage = nbHeuresNecessairesPilotage;
         this.nbPilotesNecessaires = nbPilotesNecessaires;
-        this.idConstructeur = idConstructeur;
+        this.constructeur = constructeur;
     }
 
     public int getIdModele() {
@@ -56,13 +56,15 @@ public class Modele_Avion {
         this.nbPilotesNecessaires = nbPilotesNecessaires;
     }
 
-    public Constructeur getIdConstructeur() {
-        return idConstructeur;
+    public Constructeur getConstructeur() {
+        return constructeur;
     }
 
-    public void setIdConstructeur(Constructeur idConstructeur) {
-        this.idConstructeur = idConstructeur;
+    public void setConstructeur(Constructeur constructeur) {
+        this.constructeur = constructeur;
     }
+
+    
 
     
     

@@ -12,12 +12,12 @@ package projetbd.objet;
 public class Avion {
     private int idAvion;
     private int nbHotesses;
-    private Modele_Avion idModele;
+    private Modele_Avion modele;
 
-    public Avion(int idAvion, int nbHotesses, Modele_Avion idModele) {
+    public Avion(int idAvion, int nbHotesses, Modele_Avion modele) {
         this.idAvion = idAvion;
         this.nbHotesses = nbHotesses;
-        this.idModele = idModele;
+        this.modele = modele;
     }
 
     public int getIdAvion() {
@@ -36,13 +36,15 @@ public class Avion {
         this.nbHotesses = nbHotesses;
     }
 
-    public Modele_Avion getIdModele() {
-        return idModele;
+    public Modele_Avion getModele() {
+        return modele;
     }
 
-    public void setIdModele(Modele_Avion idModele) {
-        this.idModele = idModele;
+    public void setModele(Modele_Avion modele) {
+        this.modele = modele;
     }
+
+    
     
     
 }

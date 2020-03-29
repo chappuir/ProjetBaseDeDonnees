@@ -10,29 +10,31 @@ package projetbd.objet;
  * @author JDufo
  */
 public class Affectation_Pilote {
-    private Pilote idPilote;
-    private Vol idVol;
+    private Pilote pilote;
+    private Vol vol;
 
-    public Affectation_Pilote(Pilote idPilote, Vol idVol) {
-        this.idPilote = idPilote;
-        this.idVol = idVol;
+    public Affectation_Pilote(Pilote pilote, Vol vol) {
+        this.pilote = pilote;
+        this.vol = vol;
     }
 
-    public Pilote getIdPilote() {
-        return idPilote;
+    public Pilote getPilote() {
+        return pilote;
     }
 
-    public void setIdPilote(Pilote idPilote) {
-        this.idPilote = idPilote;
+    public void setPilote(Pilote pilote) {
+        this.pilote = pilote;
     }
 
-    public Vol getIdVol() {
-        return idVol;
+    public Vol getVol() {
+        return vol;
     }
 
-    public void setIdVol(Vol idVol) {
-        this.idVol = idVol;
+    public void setVol(Vol vol) {
+        this.vol = vol;
     }
+
+    
     
     
     

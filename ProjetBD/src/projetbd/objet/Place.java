@@ -11,15 +11,15 @@ package projetbd.objet;
  */
 public class Place {
     private int idPlace;
-    private Classe idClasse;
-    private Position idPosition;
-    private Avion idAvion;
+    private Classe classe;
+    private Position position;
+    private Avion avion;
 
-    public Place(int idPlace, Classe idClasse, Position idPosition, Avion idAvion) {
+    public Place(int idPlace, Classe classe, Position position, Avion avion) {
         this.idPlace = idPlace;
-        this.idClasse = idClasse;
-        this.idPosition = idPosition;
-        this.idAvion = idAvion;
+        this.classe = classe;
+        this.position = position;
+        this.avion = avion;
     }
 
     public int getIdPlace() {
@@ -30,29 +30,30 @@ public class Place {
         this.idPlace = idPlace;
     }
 
-    public Classe getIdClasse() {
-        return idClasse;
+    public Classe getClasse() {
+        return classe;
     }
 
-    public void setIdClasse(Classe idClasse) {
-        this.idClasse = idClasse;
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
-    public Position getIdPosition() {
-        return idPosition;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setIdPosition(Position idPosition) {
-        this.idPosition = idPosition;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public Avion getIdAvion() {
-        return idAvion;
+    public Avion getAvion() {
+        return avion;
     }
 
-    public void setIdAvion(Avion idAvion) {
-        this.idAvion = idAvion;
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
+
     
     
 }

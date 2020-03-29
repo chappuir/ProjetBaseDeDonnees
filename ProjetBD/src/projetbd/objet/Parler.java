@@ -10,29 +10,29 @@ package projetbd.objet;
  * @author JDufo
  */
 public class Parler {
-    private Hotesse idHotesse;
-    private Langue idLangue;
+    private Hotesse hotesse;
+    private Langue langue;
 
-    public Parler(Hotesse idHotesse, Langue idLangue) {
-        this.idHotesse = idHotesse;
-        this.idLangue = idLangue;
+    public Parler(Hotesse hotesse, Langue langue) {
+        this.hotesse = hotesse;
+        this.langue = langue;
     }
 
-    public Hotesse getIdHotesse() {
-        return idHotesse;
+    public Hotesse getHotesse() {
+        return hotesse;
     }
 
-    public void setIdHotesse(Hotesse idHotesse) {
-        this.idHotesse = idHotesse;
+    public void setHotesse(Hotesse hotesse) {
+        this.hotesse = hotesse;
     }
 
-    public Langue getIdLangue() {
-        return idLangue;
+    public Langue getLangue() {
+        return langue;
     }
 
-    public void setIdLangue(Langue idLangue) {
-        this.idLangue = idLangue;
+    public void setLangue(Langue langue) {
+        this.langue = langue;
     }
-    
+
     
 }

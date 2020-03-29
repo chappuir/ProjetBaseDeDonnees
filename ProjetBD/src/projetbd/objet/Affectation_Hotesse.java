@@ -10,29 +10,30 @@ package projetbd.objet;
  * @author JDufo
  */
 public class Affectation_Hotesse {
-    private Hotesse idHotesse;
-    private Vol idVol;
+    private Hotesse hotesse;
+    private Vol vol;
 
-    public Affectation_Hotesse(Hotesse idHotesse, Vol idVol) {
-        this.idHotesse = idHotesse;
-        this.idVol = idVol;
+    public Affectation_Hotesse(Hotesse hotesse, Vol vol) {
+        this.hotesse = hotesse;
+        this.vol = vol;
     }
 
-    public Hotesse getIdHotesse() {
-        return idHotesse;
+    public Hotesse getHotesse() {
+        return hotesse;
     }
 
-    public void setIdHotesse(Hotesse idHotesse) {
-        this.idHotesse = idHotesse;
+    public void setHotesse(Hotesse hotesse) {
+        this.hotesse = hotesse;
     }
 
-    public Vol getIdVol() {
-        return idVol;
+    public Vol getVol() {
+        return vol;
     }
 
-    public void setIdVol(Vol idVol) {
-        this.idVol = idVol;
+    public void setVol(Vol vol) {
+        this.vol = vol;
     }
+
     
     
 }

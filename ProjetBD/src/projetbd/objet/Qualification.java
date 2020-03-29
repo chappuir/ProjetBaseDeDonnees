@@ -10,30 +10,30 @@ package projetbd.objet;
  * @author JDufo
  */
 public class Qualification {
-    private Pilote idPilote;
-    private Modele_Avion idModele;
+    private Pilote pilote;
+    private Modele_Avion modele;
     private int nbHeures;
 
-    public Qualification(Pilote idPilote, Modele_Avion idModele, int nbHeures) {
-        this.idPilote = idPilote;
-        this.idModele = idModele;
+    public Qualification(Pilote pilote, Modele_Avion modele, int nbHeures) {
+        this.pilote = pilote;
+        this.modele = modele;
         this.nbHeures = nbHeures;
     }
 
-    public Pilote getIdPilote() {
-        return idPilote;
+    public Pilote getPilote() {
+        return pilote;
     }
 
-    public void setIdPilote(Pilote idPilote) {
-        this.idPilote = idPilote;
+    public void setPilote(Pilote pilote) {
+        this.pilote = pilote;
     }
 
-    public Modele_Avion getIdModele() {
-        return idModele;
+    public Modele_Avion getModele() {
+        return modele;
     }
 
-    public void setIdModele(Modele_Avion idModele) {
-        this.idModele = idModele;
+    public void setModele(Modele_Avion modele) {
+        this.modele = modele;
     }
 
     public int getNbHeures() {
@@ -43,6 +43,7 @@ public class Qualification {
     public void setNbHeures(int nbHeures) {
         this.nbHeures = nbHeures;
     }
+
     
     
 }

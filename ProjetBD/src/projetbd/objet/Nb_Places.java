@@ -10,30 +10,30 @@ package projetbd.objet;
  * @author JDufo
  */
 public class Nb_Places {
-    private Avion idAvion;
-    private Classe idClasse;
+    private Avion avion;
+    private Classe classe;
     private int nbPlaces;
 
-    public Nb_Places(Avion idAvion, Classe idClasse, int nbPlaces) {
-        this.idAvion = idAvion;
-        this.idClasse = idClasse;
+    public Nb_Places(Avion avion, Classe classe, int nbPlaces) {
+        this.avion = avion;
+        this.classe = classe;
         this.nbPlaces = nbPlaces;
     }
 
-    public Avion getIdAvion() {
-        return idAvion;
+    public Avion getAvion() {
+        return avion;
     }
 
-    public void setIdAvion(Avion idAvion) {
-        this.idAvion = idAvion;
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
 
-    public Classe getIdClasse() {
-        return idClasse;
+    public Classe getClasse() {
+        return classe;
     }
 
-    public void setIdClasse(Classe idClasse) {
-        this.idClasse = idClasse;
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
     public int getNbPlaces() {
@@ -43,6 +43,8 @@ public class Nb_Places {
     public void setNbPlaces(int nbPlaces) {
         this.nbPlaces = nbPlaces;
     }
+
+   
     
     
 }

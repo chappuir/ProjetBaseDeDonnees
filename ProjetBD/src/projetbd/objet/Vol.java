@@ -17,9 +17,9 @@ public class Vol {
     private int heureA;
     private double duree;
     private int distance;
-    private Avion idAvion;
+    private Avion avion;
 
-    public Vol(int idVol, String villeD, String villeA, int heureD, int heureA, double duree, int distance, Avion idAvion) {
+    public Vol(int idVol, String villeD, String villeA, int heureD, int heureA, double duree, int distance, Avion avion) {
         this.idVol = idVol;
         this.villeD = villeD;
         this.villeA = villeA;
@@ -27,7 +27,7 @@ public class Vol {
         this.heureA = heureA;
         this.duree = duree;
         this.distance = distance;
-        this.idAvion = idAvion;
+        this.avion = avion;
     }
 
     public int getIdVol() {
@@ -86,12 +86,12 @@ public class Vol {
         this.distance = distance;
     }
 
-    public Avion getIdAvion() {
-        return idAvion;
+    public Avion getAvion() {
+        return avion;
     }
 
-    public void setIdAvion(Avion idAvion) {
-        this.idAvion = idAvion;
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
     
     
