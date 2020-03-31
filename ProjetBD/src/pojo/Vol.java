@@ -18,8 +18,10 @@ public class Vol {
     private int duree;
     private int distance;
     private Avion avion;
+    private String termine;
 
-    public Vol(int idVol, String villeD, String villeA, int heureD, int heureA, int duree, int distance, Avion avion) {
+
+    public Vol(int idVol, String villeD, String villeA, int heureD, int heureA, int duree, int distance, Avion avion, String termine) {
         this.idVol = idVol;
         this.villeD = villeD;
         this.villeA = villeA;
@@ -28,6 +30,7 @@ public class Vol {
         this.duree = duree;
         this.distance = distance;
         this.avion = avion;
+        this.termine = termine;
     }
 
     public int getIdVol() {
@@ -92,6 +95,14 @@ public class Vol {
 
     public void setAvion(Avion avion) {
         this.avion = avion;
+    }
+
+    public String isTermine() {
+        return termine;
+    }
+
+    public void setTermine(String termine) {
+        this.termine = termine;
     }
     
     @Override

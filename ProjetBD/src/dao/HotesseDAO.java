@@ -55,7 +55,6 @@ public class HotesseDAO extends DAO<Hotesse> {
                hots += result.getString("nom") + " -- ";
                hots += result.getString("prenom") + " -- ";
                hots += result.getString("nbHeures") + "\n ";
-               
             }
         }
         

@@ -13,7 +13,7 @@ public enum Position {
     
     HUBLOT(1, "hublot"),
     COULOIR(2, "couloir"),
-    CENTRE (3, "CENTRE");
+    CENTRE (3, "centre");
     
     private int idPosition;
     private String nomPosition;

@@ -41,7 +41,7 @@ public class VolDAO extends DAO<Vol>{
     }
     
     public String findVol(int idVol){
-        String avion = "idVol -- villeD -- villeA -- duree -- distance \n";
+        String avion = "idVol -- villeD -- villeA -- duree -- distance -- termine \n";
         
         try{
             ResultSet result = this.connect.createStatement(
@@ -53,7 +53,8 @@ public class VolDAO extends DAO<Vol>{
                avion += result.getString("villeD") + " -- ";
                avion += result.getString("villeA") + " -- ";
                avion += result.getFloat("duree") + " -- ";
-               avion += result.getInt("distance") + " \n ";
+               avion += result.getInt("distance") + " -- ";
+               avion += result.getString("termine") + " \n ";
                
 
             }
@@ -91,7 +92,7 @@ public class VolDAO extends DAO<Vol>{
     
     
     public String allVols(){
-        String vols = "idVol -- villeD -- villeA -- heureD -- heureA -- duree -- distance -- idAvion \n";
+        String vols = "idVol -- villeD -- villeA -- heureD -- heureA -- duree -- distance -- idAvion -- termine \n";
        
         try{
             ResultSet result = this.connect.createStatement(
@@ -106,7 +107,8 @@ public class VolDAO extends DAO<Vol>{
                vols += result.getInt("heureA") + " -- ";
                vols += result.getFloat("duree") + " -- ";
                vols += result.getInt("distance") + " -- ";
-               vols += result.getString("idAvion") + " \n";
+               vols += result.getString("idAvion") + " -- ";
+               vols += result.getString("termine");
             }
         }
         
@@ -118,4 +120,16 @@ public class VolDAO extends DAO<Vol>{
         return vols;
     }
     
+    public void updateVol (int leVol)
+    {
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Vol SET termine = T WHERE idPilote = " + leVol);
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }

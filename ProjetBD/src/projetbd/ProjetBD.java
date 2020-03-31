@@ -10,40 +10,41 @@ import java.sql.*;
 import pojo.*;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author JDufo
  */
 public class ProjetBD {
-    
-    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-       try {
-  	    //Enregistrement du driver Oracle
-  	    //System.out.print("Loading Oracle driver... "); 
-  	    //DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());  	    
+
+        try {
+            //Enregistrement du driver Oracle
+            //System.out.print("Loading Oracle driver... "); 
+            //DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());  	    
             //System.out.println("loaded");
-  	
-  	    // Etablissement de la connection
+
+            // Etablissement de la connection
             Statement requete = TheConnection.getInstance().createStatement();
-            
+
             Connection connect = TheConnection.getInstance();
-            
+
             String commande = "";
-            
-            do
+
+                        do
             {
                 java.util.Scanner entree = new java.util.Scanner(System.in);
-                System.out.println("Que voulez-vous faire : \n Gérer les réservations : tapez 'reservation'\n"
+                java.util.Scanner entreeInt = new java.util.Scanner(System.in);
+                System.out.println("----------------------------\n"
+                                    + "Que voulez-vous faire : \n Gérer les réservations : tapez 'reservation'\n"
                                     + "Gérer le personnel : tapez 'personnel' \n" 
-                                    + "Quitter : tapez 'quitter'\n\n");
+                                    + "Gérer les vols : tapez 'vols'\n"
+                                    + "Quitter : tapez 'quitter'\n"
+                                    + "----------------------------");
                 commande = entree.nextLine();
                 
                 // 6 -- 7 -- 8
@@ -52,8 +53,8 @@ public class ProjetBD {
                     ClientDAO clientsDAO = new ClientDAO(connect);
                     System.out.println(clientsDAO.allClients());
                     
-                    System.out.println("Veuillez sélectionner l'id du client dont vous voulez traiter les commandes : ");
-                    int idCli = entree.nextInt();
+                    System.out.println("Veuillez sélectionner l'identifiant du client dont vous voulez traiter les commandes : ");
+                    int idCli = entreeInt.nextInt();
                     
                     
                     
@@ -112,7 +113,7 @@ public class ProjetBD {
                             System.out.println(r);
                         }
                         
-                        // Il serait nécessaire de prendre en compte
+                        // Il serait nécessaire de prendre en compte les paniers et les places réservées
                     }
                     else
                     {
@@ -122,7 +123,7 @@ public class ProjetBD {
                 else if(commande.equals("personnel"))
                 {
                     System.out.println("Voulez vous gérer ? \n"
-                                        + "les hôtesses : tapez 'hotesses'"
+                                        + "les hôtesses : tapez 'hotesses'\n"
                                         + "les pilotes : tapez 'pilotes'");
                     String commandePersonnel = entree.nextLine();
                     
@@ -134,7 +135,7 @@ public class ProjetBD {
                         if(commPersAction.equals("ajouter"))
                         {
                             System.out.println("identifiant : ");
-                            int idH = entree.nextInt();
+                            int idH = entreeInt.nextInt();
                             System.out.println("nom : ");
                             String nomH = entree.nextLine();
                             System.out.println("prenom : ");
@@ -187,7 +188,7 @@ public class ProjetBD {
                         if(commPersAction.equals("ajouter"))
                         {
                             System.out.println("identifiant : ");
-                            int idP = entree.nextInt();
+                            int idP = entreeInt.nextInt();
                             System.out.println("nom : ");
                             String nomP = entree.nextLine();
                             System.out.println("prenom : ");
@@ -237,6 +238,39 @@ public class ProjetBD {
                         System.out.println("commande de gestion du personnel non reconnue");
                     }
                 }
+                else if(commande.equals("vols"))
+                {
+                    System.out.println("Voules-vous :\n"
+                                        + "Prévoir un nouveau vol : tapez 'nouveau'\n"
+                                        + "Annuler un vol : tapez 'annuler'\n"
+                                        + "Confirmer l'arrivée d'un vol : tapez 'terminer'");
+                    
+                    String commandeVol = entree.nextLine();
+                    if(commandeVol.equals("nouveau"))
+                    {
+                        
+                    }
+                    else if(commandeVol.equals("annuler"))
+                    {
+                        
+                    }
+                    else if(commandeVol.equals("terminer"))
+                    {
+                        VolDAO vDAO = new VolDAO(connect);
+                        System.out.println(vDAO.allVols());
+                        System.out.println("Sélectionnez l'identifiant du vol à terminer : ");
+                        
+                        int idVol = entreeInt.nextInt();
+                        VolDAO volDAO = new VolDAO(connect);
+                        volDAO.updateVol(idVol);
+                        System.out.println("Mise-à-jour effectuée");
+                        
+                    }
+                    else
+                    {
+                        System.out.println("commande de gestion des vols non reconnue");
+                    }
+                }
                 else if(commande.equals("quitter"))
                 {
                     System.out.println("Au revoir.");
@@ -246,18 +280,13 @@ public class ProjetBD {
                     System.out.println("Commande de base non reconnue \n");
                 }
             } while (! commande.equals("quitter"));
-            
-            //TestFindReservation
-            /*Connection connect = TheConnection.getInstance();
-            ReservationDAO resaDAO = new ReservationDAO(connect);
-            
-            System.out.println(resaDAO.AllReservations());
+
             
             
 
-            
-            //Reéservation du client
-            //ReservationDAO resaDAO = new ReservationDAO(connect);
+            /*
+            //Réservation du client
+            ReservationDAO resaDAO = new ReservationDAO(connect);
             
             
             
@@ -277,28 +306,21 @@ public class ProjetBD {
             
             //Suppression Reservation
             resaDAO.deleteReservation(1);
+            */
             
             //Fin *
-            */
-  
+             
             //Affiche un client
             //Client cli = clientDAO.find(4);
             //System.out.println("idClient: " + cli.getIdClient() + " - Nom: " + cli.getNom() + " - Prenom: " + cli.getPrenom());
-           
             //resaDAO.delete(Integer.toString(1));
             //System.out.println(resaDAO.AllReservations());
-            
-            
-            
             //Suppression Reservation
-            
-            
             /*ReservationDAO resaDAO = new ReservationDAO(connect);
             System.out.println(resaDAO.AllReservations());
             resaDAO.deleteReservation(1);
             System.out.println(resaDAO.AllReservations());*/
-            
-            /*PanierDAO pDAO = new PanierDAO(connect);
+ /*PanierDAO pDAO = new PanierDAO(connect);
             System.out.println(pDAO.PanierResa(1));
             
             Place_ReserveeDAO placeDAO = new Place_ReserveeDAO(connect);
@@ -307,20 +329,14 @@ public class ProjetBD {
             System.out.println(placeDAO.PlaceResa(1));
             pDAO.deletePanier(1);
             System.out.println(pDAO.PanierResa(1));*/
-            
-            
-            /*for(int i = 1; i<10; i++){
+ /*for(int i = 1; i<10; i++){
                 //System.out.println(reservationDAO.find(i).toString());
                 
                 Reservation resa = reservationDAO.find(i);
                 System.out.println("idReservation" + resa.getIdReservation() + " - Date: " 
                         + resa.getDateRes());
             }*/
-            
-            
-  	    // traitement d'exception
-          
-        
+            // traitement d'exception
             /*       
             
             //7
@@ -381,9 +397,7 @@ public class ProjetBD {
             resultat.close();
       
   	    System.out.println("bye.");
-            */
-            
-            
+             */
             //TestDAO
             /*DAO<Constructeur> constructeurDAO = DAOFactory.getConstructeurDAO();
             
@@ -392,59 +406,42 @@ public class ProjetBD {
                 System.out.println("idConstructeur " + cons.getIdConstructeur() + " - Nom: " 
                         + cons.getNom());
             }
-  	    */
-            
+             */
             //TestFindReservation
             /*Connection connect = TheConnection.getInstance();
             ReservationDAO resaDAO = new ReservationDAO(connect);
             
             System.out.println(resaDAO.AllReservations());
-            */
-            
+             */
             //5
             //Supression
-            
             //PiloteDAO pilotesDAO = new PiloteDAO(connect);
             //System.out.println(pilotesDAO.allPilotes());
-            
             //HotesseDAO hotessesDAO = new HotesseDAO(connect);
             //System.out.println(hotessesDAO.allHotesses());
-            
             //Hotesse
             //Affectation_HotesseDAO aft_hotDAO = new Affectation_HotesseDAO(connect);
             //aft_hotDAO.deleteAft_Hotesse(1);
-            
             //ParlerDAO parlerDAO = new ParlerDAO(connect);
             //parlerDAO.deleteParlerHot(1);
-            
             //HotesseDAO hotesseDAO = new HotesseDAO(connect);
             //hotessesDAO.deleteHot(1);
-            
             //Pilote
             //Affectation_PiloteDAO aft_pilDAO = new Affectation_PiloteDAO(connect);
             //aft_pilDAO.deletePil(1);
-            
             //QualificationDAO qualifDAO = new QualificationDAO(connect);
             //qualifDAO.deletePilQualif(1);
-            
             //PiloteDAO piloteDAO = new PiloteDAO(connect);
             //piloteDAO.deletePil(1);
-            
             //Ajout
-            
             //Pilote
             //PiloteDAO pDAO = new PiloteDAO(connect);
             //Pilote p = new Pilote(5, "Chappuis", "Robin", "20", "rue de la mort", "69000", "Lyon", "France", 0);
             //pDAO.addPil(p);
-            
             //Hotesse
             //HotesseDAO hDAO = new HotesseDAO(connect);
             //Hotesse h = new Hotesse(1, "Chappuis", "Robine", "20", "rue de la mort", "69000", "Lyon", "France", 0);
             //hDAO.addHot(h);
-            
-            
-            
-            
             //6
             /*
             java.util.Scanner entree = new java.util.Scanner(System.in);
@@ -455,8 +452,7 @@ public class ProjetBD {
             for(Reservation r : resaCli){
                 System.out.println(r);
             }
-            */
-            
+             */
             //8
             /*//Connexion
             Connection connect = TheConnection.getInstance();
@@ -492,26 +488,18 @@ public class ProjetBD {
             resaDAO.deleteReservation(1);
             
             //Fin *
-            */
-  
+             */
             //Affiche un client
             //Client cli = clientDAO.find(4);
             //System.out.println("idClient: " + cli.getIdClient() + " - Nom: " + cli.getNom() + " - Prenom: " + cli.getPrenom());
-           
             //resaDAO.delete(Integer.toString(1));
             //System.out.println(resaDAO.AllReservations());
-            
-            
-            
             //Suppression Reservation
-            
-            
             /*ReservationDAO resaDAO = new ReservationDAO(connect);
             System.out.println(resaDAO.AllReservations());
             resaDAO.deleteReservation(1);
             System.out.println(resaDAO.AllReservations());*/
-            
-            /*PanierDAO pDAO = new PanierDAO(connect);
+ /*PanierDAO pDAO = new PanierDAO(connect);
             System.out.println(pDAO.PanierResa(1));
             
             Place_ReserveeDAO placeDAO = new Place_ReserveeDAO(connect);
@@ -520,30 +508,24 @@ public class ProjetBD {
             System.out.println(placeDAO.PlaceResa(1));
             pDAO.deletePanier(1);
             System.out.println(pDAO.PanierResa(1));*/
-            
-            
-            /*for(int i = 1; i<10; i++){
+ /*for(int i = 1; i<10; i++){
                 //System.out.println(reservationDAO.find(i).toString());
                 
                 Reservation resa = reservationDAO.find(i);
                 System.out.println("idReservation" + resa.getIdReservation() + " - Date: " 
                         + resa.getDateRes());
             }*/
-            
-            
-  	    // traitement d'exception
-          } 
-       
-            catch (SQLException e) {
-              System.err.println("failed");
-              System.out.println("Affichage de la pile d'erreur");
-  	          e.printStackTrace(System.err);
-              System.out.println("Affichage du message d'erreur");
-              System.out.println(e.getMessage());
-              System.out.println("Affichage du code d'erreur");
-  	      System.out.println(e.getErrorCode());	    
+            // traitement d'exception
+        } catch (SQLException e) {
+            System.err.println("failed");
+            System.out.println("Affichage de la pile d'erreur");
+            e.printStackTrace(System.err);
+            System.out.println("Affichage du message d'erreur");
+            System.out.println(e.getMessage());
+            System.out.println("Affichage du code d'erreur");
+            System.out.println(e.getErrorCode());
 
-          } 
+        }
     }
-    
+
 }

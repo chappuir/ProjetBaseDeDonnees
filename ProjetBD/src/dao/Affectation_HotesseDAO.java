@@ -70,7 +70,7 @@ public class Affectation_HotesseDAO extends DAO<Affectation_Hotesse>{
             hot_aff = "Erreur dans hot_aff";
         }
 
-            return hot_aff;
+        return hot_aff;
     }
     
 }

@@ -100,8 +100,8 @@ create table MODELE_AVION (
 	nbHeuresNecessairesPilotage integer not null,
 	nbPilotesNecessaires integer not null,
 	idConstructeur integer not null,
-	constraint pk_MODELE_AVION_id primary key (idModele)
-        constraint fk_MODELE_AVION_idCons foreign key (idConstructeur)
+	constraint pk_MODELE_AVION_id primary key (idModele),
+	constraint fk_MODELE_AVION_to_CONS foreign key (idConstructeur) references CONSTRUCTEUR (idConstructeur)
 	);
 	
 create table AVION (
@@ -132,6 +132,7 @@ create table VOL (
 	duree float not null,
 	distance integer not null,
 	idAvion integer not null,
+        termine varchar(1) not null,
 	constraint pk_VOL_id primary key (idVol),
 	constraint fk_VOL_to_AVION foreign key (idAvion) references AVION(idAvion)
 	);
