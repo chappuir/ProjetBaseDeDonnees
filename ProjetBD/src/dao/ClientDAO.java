@@ -6,6 +6,8 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import pojo.Client;
 
 /**
@@ -20,7 +22,33 @@ public class ClientDAO extends DAO<Client>{
 
     @Override
     public Client find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Client cli = new Client();
+
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT * FROM Client WHERE idClient = " + id);
+            if (result.first()) {
+                 cli = new Client(
+                        id,
+                        result.getString("nom"),
+                        result.getString("prenom"),
+                        result.getString("numero_adr"),
+                        result.getString("rue_adr"),
+                        result.getString("codeP_adr"),
+                        result.getString("ville"),
+                        result.getString("pays"),
+                        result.getString("noPasseport"),
+                        result.getInt("heuresVol"),
+                        result.getInt("ptsFidelite"),
+                        result.getInt("reductionImm")
+                        );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cli;
     }
 
     @Override
@@ -37,7 +65,27 @@ public class ClientDAO extends DAO<Client>{
     public void delete(Client obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public String allClients(){
+        String clients = "idClient -- Nom -- Prenom \n";
+       
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT * FROM Client");
+            while (result.next()) {
+               clients += result.getInt("idClient") + " -- ";
+               clients += result.getString("Nom") + " -- ";
+               clients += result.getString("Prenom") + "\n";
+            }
+        }
+        
+        catch (SQLException e) {
+            e.printStackTrace();
+            clients = "Erreur dans allClients";
+        }
 
-    
-    
+    return clients;
+    }
 }

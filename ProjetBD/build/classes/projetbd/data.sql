@@ -93,8 +93,12 @@ insert into NB_PLACES values (3, 2, 150);
 
 
 insert into PANIER values (1, 1, 1);
+insert into PANIER values (2, 2, 2);
+insert into PANIER values (3, 3, 3);
 
 
 insert into PLACE_RESERVEE values (1, 1, 150);
+insert into PLACE_RESERVEE values (2, 2, 50);
+insert into PLACE_RESERVEE values (3, 3, 10);
 
 

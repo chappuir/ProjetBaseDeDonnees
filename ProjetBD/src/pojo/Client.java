@@ -37,6 +37,8 @@ public class Client {
         this.ptsFidelite = 0;
         this.reductionImm = reductionImm;
     }
+    
+    public Client(){};
 
     public int getIdClient() {
         return idClient;

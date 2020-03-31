@@ -94,5 +94,15 @@ public class Vol {
         this.avion = avion;
     }
     
+    @Override
+    public String toString()
+    {
+        String volToString = "";
+        volToString += " Numéro de vol : "+this.getIdVol()+
+                        "\n Lieu de départ : "+this.getVilleD()+" Lieu d'arrivée : "+this.getVilleA()+
+                        "\n Heure de départ : "+this.getHeureD()+" Heure d'arrivée : "+this.getHeureA()+"\n";
+        return volToString;
+    }
+    
     
 }

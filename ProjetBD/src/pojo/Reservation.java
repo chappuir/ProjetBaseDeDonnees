@@ -21,6 +21,8 @@ public class Reservation {
         this.dateRes = dateRes;
         this.client = client;
     }
+    
+    public Reservation(){};
 
     public int getIdReservation() {
         return idReservation;
@@ -44,6 +46,11 @@ public class Reservation {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" + "idReservation=" + idReservation + ", dateRes=" + dateRes + ", client=" + client.getIdClient() + '}';
     }
     
    

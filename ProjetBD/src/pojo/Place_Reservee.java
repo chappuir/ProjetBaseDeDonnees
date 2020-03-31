@@ -43,6 +43,18 @@ public class Place_Reservee {
     public void setPrix(int prix) {
         this.prix = prix;
     }
+    
+    
+    @Override
+    public String toString()
+    {
+        String placeRtoString = "";
+        placeRtoString += "Place : "+this.place.getIdPlace()+"\n"+
+                                    "Position : "+this.place.getPosition()+"\n"+
+                                    "Classe : "+this.place.getClasse()+"\n"+
+                                    "Prix : "+this.prix;
+        return placeRtoString;
+ }
 
     
     

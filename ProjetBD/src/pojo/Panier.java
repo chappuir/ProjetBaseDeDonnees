@@ -20,6 +20,9 @@ public class Panier {
         this.reservation = reservation;
     }
 
+    public Panier() {
+    }
+
     public int getIdPanier() {
         return idPanier;
     }
@@ -44,6 +47,17 @@ public class Panier {
         this.reservation = reservation;
     }
 
+    /*@Override
+    public String toString()
+    {
+        String panierToString = "";
+        panierToString += "ientifiant panier : "+this.getIdPanier()+"\n"+this.vol.toString();
+        for(Place_Reservee pr : placesReservees)
+        {
+            panierToString += "-------------------------------------\n"+pr.toString();
+        }
+        return panierToString;
+    }*/
    
     
 }

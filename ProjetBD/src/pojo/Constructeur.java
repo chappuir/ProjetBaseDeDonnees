@@ -17,6 +17,9 @@ public class Constructeur {
         this.idConstructeur = idConstructeur;
         this.nom = nom;
     }
+    
+    public Constructeur(){
+    };
 
     public int getIdConstructeur() {
         return idConstructeur;

@@ -5,7 +5,7 @@
  */
 package dao;
 
-import java.sql.Connection;
+import java.sql.*;
 import pojo.Constructeur;
 
 /**
@@ -20,7 +20,23 @@ public class ConstructeurDAO extends DAO<Constructeur> {
 
     @Override
     public Constructeur find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Constructeur cons = new Constructeur();
+
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT * FROM Constructeur WHERE idConstructeur = " + id);
+            if (result.first()) {
+                cons = new Constructeur(
+                        id,
+                        result.getString("nom")
+                        );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cons;
     }
 
     @Override

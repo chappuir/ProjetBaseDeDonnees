@@ -10,6 +10,7 @@ import java.sql.Connection;
 /**
  *
  * @author JDufo
+ * @param <T>
  */
 public abstract class DAO<T> {
     protected Connection connect = null;
@@ -29,12 +30,14 @@ public abstract class DAO<T> {
 	 * Permet de créer une entrée dans la base de données
 	 * par rapport à un objet
 	 * @param obj
+         * @return 
 	 */
 	public abstract T create(T obj);
 	
 	/**
 	 * Permet de mettre à jour les données d'une entrée dans la base 
 	 * @param obj
+         * @return 
 	 */
 	public abstract T update(T obj);
 	
