@@ -6,10 +6,10 @@
 package projetbd;
 
 import dao.*;
-import dao.ReservationDAO;
 import java.sql.*;
-import java.util.ArrayList;
 import pojo.*;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -35,6 +35,293 @@ public class ProjetBD {
             Statement requete = TheConnection.getInstance().createStatement();
             
             Connection connect = TheConnection.getInstance();
+            
+            String commande = "";
+            
+            do
+            {
+                java.util.Scanner entree = new java.util.Scanner(System.in);
+                System.out.println("Que voulez-vous faire : \n Gérer les réservations : tapez 'reservation'\n"
+                                    + "Gérer le personnel : tapez 'personnel' \n" 
+                                    + "Quitter : tapez 'quitter'\n\n");
+                commande = entree.nextLine();
+                
+                // 6 -- 7 -- 8
+                if(commande.equals("reservation"))
+                {
+                    ClientDAO clientsDAO = new ClientDAO(connect);
+                    System.out.println(clientsDAO.allClients());
+                    
+                    System.out.println("Veuillez sélectionner l'id du client dont vous voulez traiter les commandes : ");
+                    int idCli = entree.nextInt();
+                    
+                    
+                    
+                    System.out.println("Voulez-vous : \n"
+                                        + "ajouter une réservation : tapez 'ajouter'\n"
+                                        + "supprimer une réservation : tapez 'supprimer'\n"
+                                        + "consulter les réservation : tapez 'consulter'");
+                    
+                    String commandeReservation = entree.nextLine();
+                    
+                    if(commandeReservation.equals("ajouter"))
+                    {
+                        // affichage des vols
+                        // demande à l'utilisateur des vols voulus
+                        
+                        // affichage des places disponibles pour ce vol
+                        // demande à l'utilisateur des places voulues
+                    }
+                    else if(commandeReservation.equals("supprimer"))
+                    {
+                        ArrayList<Reservation> resaCli = ReservationDAO.listeReservationsClient(idCli);
+                        for(Reservation r : resaCli)
+                        {
+                            System.out.println(r);
+                        }
+                        
+                        System.out.println("Sélectionnez l'identifiant de la réservation à supprimer : ");
+                        int idRes = entree.nextInt();
+                        
+                        PanierDAO panierDAO = new PanierDAO(connect);
+                        /*ArrayList<Panier> panRes = panierDAO.(idRes);
+                        
+                        for(Panier p : panRes)
+                        {
+                            Place_ReserveeDAO plResDAO = new Place_ReserveeDAO(connect);
+                            ArrayList<Place_Reservee> plaResRes = plResDAO.listePlacesRPanier();
+                            
+                            for(Place_Reservee pr : plaResRes)
+                            {
+                                //Suppression Place_Reservee
+                                placeDAO.deleteResa(pr.getPlace().getIdPlace(), pr.getPanier().getIdPanier());
+                            }
+                            
+                            PanierDAO.deletePanier(p.getIdPanier());
+                        }
+                        ReservationDAO.deleteReservation(idRes);
+                        */
+                        
+                        
+                    }
+                    else if(commandeReservation.equals("consulter"))
+                    {
+                        ArrayList<Reservation> resaCli = ReservationDAO.listeReservationsClient(idCli);
+                        for(Reservation r : resaCli)
+                        {
+                            System.out.println(r);
+                        }
+                        
+                        // Il serait nécessaire de prendre en compte
+                    }
+                    else
+                    {
+                        System.out.println("commande de gestion des reservations non reconnue");
+                    }
+                }
+                else if(commande.equals("personnel"))
+                {
+                    System.out.println("Voulez vous gérer ? \n"
+                                        + "les hôtesses : tapez 'hotesses'"
+                                        + "les pilotes : tapez 'pilotes'");
+                    String commandePersonnel = entree.nextLine();
+                    
+                    if(commandePersonnel.equals("hotesses"))
+                    {
+                        System.out.println("tapez ('supprimer' ou 'ajouter')");
+                        String commPersAction = entree.nextLine();
+                        
+                        if(commPersAction.equals("ajouter"))
+                        {
+                            System.out.println("identifiant : ");
+                            int idH = entree.nextInt();
+                            System.out.println("nom : ");
+                            String nomH = entree.nextLine();
+                            System.out.println("prenom : ");
+                            String prenomH = entree.nextLine();
+                            System.out.println("numéro d'adresse : ");
+                            String noAdrH = entree.nextLine();
+                            System.out.println("rue : ");
+                            String rueH = entree.nextLine();
+                            System.out.println("code postal : ");
+                            String codePH = entree.nextLine();
+                            System.out.println("ville : ");
+                            String villeH = entree.nextLine();
+                            System.out.println("Pays : ");
+                            String paysH = entree.nextLine();
+                            System.out.println("nombre d'heures de vol : ");
+                            int nbHeuresH = entree.nextInt();
+                            
+                            
+                            HotesseDAO hDAO = new HotesseDAO(connect);
+                            Hotesse h = new Hotesse(idH, nomH, prenomH, noAdrH, rueH, codePH, villeH, paysH, nbHeuresH);
+                            hDAO.addHot(h);
+                        }
+                        else if(commPersAction.equals("supprimer"))
+                        {
+                            HotesseDAO hotessesDAO = new HotesseDAO(connect);
+                            System.out.println(hotessesDAO.allHotesses() + "\n\n");
+                            System.out.println("Entrez l'identifiant de l'hôtesse à supprimer :");
+                            
+                            int idHotesseSuppr = entree.nextInt();
+            
+                            Affectation_HotesseDAO aft_hotDAO = new Affectation_HotesseDAO(connect);
+                            aft_hotDAO.deleteAft_Hotesse(idHotesseSuppr);
+            
+                            ParlerDAO parlerDAO = new ParlerDAO(connect);
+                            parlerDAO.deleteParlerHot(idHotesseSuppr);
+            
+                            HotesseDAO hotesseDAO = new HotesseDAO(connect);
+                            hotessesDAO.deleteHot(idHotesseSuppr);
+                        }
+                        else
+                        {
+                            System.out.println("commande de gestion des hôtesses non reconnue");
+                        }
+                    }
+                    else if(commandePersonnel.equals("pilotes"))
+                    {
+                        System.out.println("tapez ('supprimer' ou 'ajouter')");
+                        String commPersAction = entree.nextLine();
+                        
+                        if(commPersAction.equals("ajouter"))
+                        {
+                            System.out.println("identifiant : ");
+                            int idP = entree.nextInt();
+                            System.out.println("nom : ");
+                            String nomP = entree.nextLine();
+                            System.out.println("prenom : ");
+                            String prenomP = entree.nextLine();
+                            System.out.println("numéro d'adresse : ");
+                            String noAdrP = entree.nextLine();
+                            System.out.println("rue : ");
+                            String rueP = entree.nextLine();
+                            System.out.println("code postal : ");
+                            String codePP = entree.nextLine();
+                            System.out.println("ville : ");
+                            String villeP = entree.nextLine();
+                            System.out.println("Pays : ");
+                            String paysP = entree.nextLine();
+                            System.out.println("nombre d'heures de vol : ");
+                            int nbHeuresP = entree.nextInt();
+                            
+                            
+                            PiloteDAO pDAO = new PiloteDAO(connect);
+                            Pilote p = new Pilote(idP, nomP, prenomP, noAdrP, rueP, codePP, villeP, paysP, nbHeuresP);
+                            pDAO.addPil(p);
+                        }
+                        else if(commPersAction.equals("supprimer"))
+                        {
+                            PiloteDAO pilotesDAO = new PiloteDAO(connect);
+                            System.out.println(pilotesDAO.allPilotes() + "\n\n");
+                            System.out.println("Entrez l'identifiant du pilote à supprimer :");
+                            
+                            int idPiloteSuppr = entree.nextInt();
+                            
+                            Affectation_PiloteDAO aft_pilDAO = new Affectation_PiloteDAO(connect);
+                            aft_pilDAO.deletePil(idPiloteSuppr);
+            
+                            QualificationDAO qualifDAO = new QualificationDAO(connect);
+                            qualifDAO.deletePilQualif(idPiloteSuppr);
+            
+                            PiloteDAO piloteDAO = new PiloteDAO(connect);
+                            piloteDAO.deletePil(idPiloteSuppr);
+                        }
+                        else
+                        {
+                            System.out.println("commande de gestion des pilotes non reconnue");
+                        } 
+                    }
+                    else
+                    {
+                        System.out.println("commande de gestion du personnel non reconnue");
+                    }
+                }
+                else if(commande.equals("quitter"))
+                {
+                    System.out.println("Au revoir.");
+                }
+                else
+                {
+                    System.out.println("Commande de base non reconnue \n");
+                }
+            } while (! commande.equals("quitter"));
+            
+            //TestFindReservation
+            /*Connection connect = TheConnection.getInstance();
+            ReservationDAO resaDAO = new ReservationDAO(connect);
+            
+            System.out.println(resaDAO.AllReservations());
+            
+            
+
+            
+            //Reéservation du client
+            //ReservationDAO resaDAO = new ReservationDAO(connect);
+            
+            
+            
+            //Affichage Panier selon Reservation
+            PanierDAO panierDAO = new PanierDAO(connect);
+            System.out.println(panierDAO.panierResa(1));
+            
+            //Affichage Place_Reservee selon le panier
+            Place_ReserveeDAO placeDAO = new Place_ReserveeDAO(connect);
+            System.out.println(placeDAO.placeResa(1));
+            
+            //Suppression Place_Reservee
+            placeDAO.deleteResa(1);
+            
+            //Suppression Panier
+            panierDAO.deletePanier(1);
+            
+            //Suppression Reservation
+            resaDAO.deleteReservation(1);
+            
+            //Fin *
+            */
+  
+            //Affiche un client
+            //Client cli = clientDAO.find(4);
+            //System.out.println("idClient: " + cli.getIdClient() + " - Nom: " + cli.getNom() + " - Prenom: " + cli.getPrenom());
+           
+            //resaDAO.delete(Integer.toString(1));
+            //System.out.println(resaDAO.AllReservations());
+            
+            
+            
+            //Suppression Reservation
+            
+            
+            /*ReservationDAO resaDAO = new ReservationDAO(connect);
+            System.out.println(resaDAO.AllReservations());
+            resaDAO.deleteReservation(1);
+            System.out.println(resaDAO.AllReservations());*/
+            
+            /*PanierDAO pDAO = new PanierDAO(connect);
+            System.out.println(pDAO.PanierResa(1));
+            
+            Place_ReserveeDAO placeDAO = new Place_ReserveeDAO(connect);
+            System.out.println(placeDAO.PlaceResa(1));
+            placeDAO.deleteResa(1);
+            System.out.println(placeDAO.PlaceResa(1));
+            pDAO.deletePanier(1);
+            System.out.println(pDAO.PanierResa(1));*/
+            
+            
+            /*for(int i = 1; i<10; i++){
+                //System.out.println(reservationDAO.find(i).toString());
+                
+                Reservation resa = reservationDAO.find(i);
+                System.out.println("idReservation" + resa.getIdReservation() + " - Date: " 
+                        + resa.getDateRes());
+            }*/
+            
+            
+  	    // traitement d'exception
+          
+        
+            /*       
             
             //7
             //Affichage de tout les vols
