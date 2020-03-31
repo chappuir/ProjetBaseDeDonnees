@@ -96,8 +96,8 @@ public class PiloteDAO extends DAO<Pilote>{
         }
     }
     
-    public String dureePilote(int idPilote) {
-        String res = "";
+    public int dureePilote(int idPilote) {
+        int res = 0;
 
         try {
             ResultSet result = this.connect.createStatement(

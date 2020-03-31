@@ -100,8 +100,8 @@ public class HotesseDAO extends DAO<Hotesse> {
         }
     }
     
-    public String dureeHot(int idHotesse) {
-        String res = "";
+    public int dureeHotesse(int idHotesse) {
+        int res = 0;
 
         try {
             ResultSet result = this.connect.createStatement(

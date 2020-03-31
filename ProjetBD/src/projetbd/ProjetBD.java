@@ -35,7 +35,7 @@ public class ProjetBD {
 
             String commande = "";
 
-                        do
+            do
             {
                 java.util.Scanner entree = new java.util.Scanner(System.in);
                 java.util.Scanner entreeInt = new java.util.Scanner(System.in);
@@ -263,6 +263,29 @@ public class ProjetBD {
                         int idVol = entreeInt.nextInt();
                         VolDAO volDAO = new VolDAO(connect);
                         volDAO.updateVol(idVol);
+                        
+                        Affectation_PiloteDAO affPilDAO = new Affectation_PiloteDAO(connect);
+                        affPilDAO.findPil_Aff(idVol);
+                        
+                        System.out.println("Entrez l'identifiant du pilote auquel vous voulez ajouter des heures");
+                        int idPilAjHe = entreeInt.nextInt();
+                        
+                        System.out.println("Entrez l'identifiant de l'hotesse auquel vous voulez ajouter des heures");
+                        int idHotAjHe = entreeInt.nextInt();
+                        
+                        int nbHeures = volDAO.dureeVol(idVol);
+                        
+                        PiloteDAO pilDAO = new PiloteDAO(connect);
+                        int durActuelle = pilDAO.dureePilote(idPilAjHe);
+                        durActuelle += nbHeures;
+                        pilDAO.updatePil(nbHeures, idPilAjHe);
+                        
+                        HotesseDAO hotDAO = new HotesseDAO(connect);
+                        int durActuelleH = hotDAO.dureeHotesse(idHotAjHe);
+                        durActuelleH += nbHeures;
+                        hotDAO.updateHot(nbHeures, idHotAjHe);
+                        
+                        
                         System.out.println("Mise-à-jour effectuée");
                         
                     }

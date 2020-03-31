@@ -68,25 +68,22 @@ public class VolDAO extends DAO<Vol>{
             return avion;
     }
     
-    public String dureeVol(int idVol){
-        String d = "";
-        
-        try{
+    public int dureeVol(int idVol) {
+        int d = 0;
+
+        try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY).executeQuery(
                             "SELECT duree FROM Vol WHERE idVol = " + idVol);
             while (result.next()) {
-              d += result.getInt("duree");
+                d += result.getInt("duree");
             }
-        }
-        
-        
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-            return d;
-            
+        return d;
+
     }
     
     
