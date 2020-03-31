@@ -50,4 +50,28 @@ public class Affectation_PiloteDAO extends DAO<Affectation_Pilote> {
             e.printStackTrace();
         }
     }
+    
+    public String findPil_Aff(int idVol){
+        String pil_aff = "idPilote -- idVol \n";
+        
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT * FROM Affectation_Pilote WHERE idVol = " + idVol);
+            while (result.next()) {
+               pil_aff += result.getInt("idPilote") + " -- ";
+               pil_aff += result.getInt("idVol") + " \n ";
+            }
+        } 
+        
+        catch (SQLException e) {
+            e.printStackTrace();
+            pil_aff = "Erreur dans findPil_Aff";
+        }
+
+            return pil_aff;
+    }
+    
+    
 }

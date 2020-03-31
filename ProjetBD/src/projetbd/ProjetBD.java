@@ -36,6 +36,54 @@ public class ProjetBD {
             
             Connection connect = TheConnection.getInstance();
             
+            //7
+            //Affichage de tout les vols
+            VolDAO vDAO = new VolDAO(connect);
+            System.out.println(vDAO.allVols());
+            //4
+            System.out.println(vDAO.findVol(1));
+            Affectation_PiloteDAO affDAO = new Affectation_PiloteDAO(connect);
+            System.out.println(affDAO.findPil_Aff(1));
+            System.out.println(vDAO.dureeVol(1));
+            
+            //Durée Vol
+            int i = Integer.parseInt(vDAO.dureeVol(1));
+            System.out.println(i);
+            
+            //Update¨Pilote
+            PiloteDAO pDAO = new PiloteDAO(connect);
+            int nbHeuresPilote = Integer.parseInt(pDAO.dureePilote(1));
+            System.out.println(nbHeuresPilote);
+            
+            int newNbHeurePi = i + nbHeuresPilote;
+            System.out.println(newNbHeurePi);
+            
+            pDAO.updatePil(newNbHeurePi, 1);
+            System.out.println(pDAO.allPilotes());
+            
+            //Update Qualification
+            
+            //Update Hotesse
+            //Hotesses selon le vol
+            Affectation_HotesseDAO aH = new Affectation_HotesseDAO(connect);
+            System.out.println(aH.findHot_Aff(1));
+            
+            //Recuperation nbHeures Hotesse
+            HotesseDAO hDAO = new HotesseDAO(connect);
+            int nbHeuresHotesse = Integer.parseInt(hDAO.dureeHot(2));
+            System.out.println(nbHeuresHotesse);
+            
+            int newNbHeureHot = i + nbHeuresHotesse;
+            System.out.println(newNbHeureHot);
+            
+            hDAO.updateHot(newNbHeureHot, 2);
+            System.out.println(hDAO.allHotesses());
+            
+            //Update Hotesse
+            
+            
+            
+            
             //Exemple requete
             /*ResultSet resultat = requete.executeQuery("SELECT nom FROM Pilote");
   	    while(resultat.next()) { // récupération des résultats
@@ -206,7 +254,7 @@ public class ProjetBD {
               System.out.println("Affichage du message d'erreur");
               System.out.println(e.getMessage());
               System.out.println("Affichage du code d'erreur");
-  	          System.out.println(e.getErrorCode());	    
+  	      System.out.println(e.getErrorCode());	    
 
           } 
     }

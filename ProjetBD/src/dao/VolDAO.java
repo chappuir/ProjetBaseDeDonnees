@@ -6,6 +6,8 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import pojo.Vol;
 
 /**
@@ -36,6 +38,84 @@ public class VolDAO extends DAO<Vol>{
     @Override
     public void delete(Vol obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public String findVol(int idVol){
+        String avion = "idVol -- villeD -- villeA -- duree -- distance \n";
+        
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT * FROM Vol WHERE idVol = " + idVol);
+            while (result.next()) {
+               avion += result.getInt("idVol") + " -- ";
+               avion += result.getString("villeD") + " -- ";
+               avion += result.getString("villeA") + " -- ";
+               avion += result.getFloat("duree") + " -- ";
+               avion += result.getInt("distance") + " \n ";
+               
+
+            }
+        } 
+        
+        catch (SQLException e) {
+            e.printStackTrace();
+            avion = "Erreur dans findAvion";
+        }
+
+            return avion;
+    }
+    
+    public String dureeVol(int idVol){
+        String d = "";
+        
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT duree FROM Vol WHERE idVol = " + idVol);
+            while (result.next()) {
+              d += result.getInt("duree");
+            }
+        }
+        
+        
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return d;
+            
+    }
+    
+    
+    
+    public String allVols(){
+        String vols = "idVol -- villeD -- villeA -- heureD -- heureA -- duree -- distance -- idAvion \n";
+       
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT * FROM Vol");
+            while (result.next()) {
+               vols += result.getInt("idVol") + " -- ";
+               vols += result.getString("villeD") + " -- ";
+               vols += result.getString("villeA") + " -- ";
+               vols += result.getInt("heureD") + " -- ";
+               vols += result.getInt("heureA") + " -- ";
+               vols += result.getFloat("duree") + " -- ";
+               vols += result.getInt("distance") + " -- ";
+               vols += result.getString("idAvion") + " \n";
+            }
+        }
+        
+        catch (SQLException e) {
+            e.printStackTrace();
+            vols = "Erreur dans allVols";
+        }
+
+        return vols;
     }
     
 }

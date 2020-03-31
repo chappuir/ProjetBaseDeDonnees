@@ -15,11 +15,11 @@ public class Vol {
     private String villeA;
     private int heureD;
     private int heureA;
-    private double duree;
+    private int duree;
     private int distance;
     private Avion avion;
 
-    public Vol(int idVol, String villeD, String villeA, int heureD, int heureA, double duree, int distance, Avion avion) {
+    public Vol(int idVol, String villeD, String villeA, int heureD, int heureA, int duree, int distance, Avion avion) {
         this.idVol = idVol;
         this.villeD = villeD;
         this.villeA = villeA;
@@ -74,7 +74,7 @@ public class Vol {
         return duree;
     }
 
-    public void setDuree(double duree) {
+    public void setDuree(int duree) {
         this.duree = duree;
     }
 

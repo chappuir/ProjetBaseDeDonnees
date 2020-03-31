@@ -43,7 +43,7 @@ public class HotesseDAO extends DAO<Hotesse> {
     }
     
     public String allHotesses(){
-        String clients = "idHotesse -- Nom -- Prenom \n";
+        String hots = "idHotesse -- Nom -- Prenom -- NbHeures \n";
        
         try{
             ResultSet result = this.connect.createStatement(
@@ -51,18 +51,20 @@ public class HotesseDAO extends DAO<Hotesse> {
                     ResultSet.CONCUR_READ_ONLY).executeQuery(
                             "SELECT * FROM Hotesse");
             while (result.next()) {
-               clients += result.getInt("idHotesse") + " -- ";
-               clients += result.getString("nom") + " -- ";
-               clients += result.getString("prenom") + "\n";
+               hots += result.getInt("idHotesse") + " -- ";
+               hots += result.getString("nom") + " -- ";
+               hots += result.getString("prenom") + " -- ";
+               hots += result.getString("nbHeures") + "\n ";
+               
             }
         }
         
         catch (SQLException e) {
             e.printStackTrace();
-            clients = "Erreur dans allHotesses";
+            hots = "Erreur dans allHotesses";
         }
 
-        return clients;
+        return hots;
     }
     
     public void deleteHot(int idHotesse) {
@@ -94,6 +96,37 @@ public class HotesseDAO extends DAO<Hotesse> {
             
             prepare.executeUpdate();
             
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public String dureeHot(int idHotesse) {
+        String res = "";
+
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT nbHeures FROM Hotesse WHERE idHotesse = " + idHotesse);
+            while (result.next()) {
+                res += result.getInt("nbHeures");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+
+    }
+    
+    public void updateHot(int nvDuree, int idHotesse){
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE).executeQuery(
+                            "UPDATE Hotesse SET nbHeures = " + nvDuree +
+                                    " WHERE idHotesse = " + idHotesse
+                    );
         } catch (SQLException e) {
             e.printStackTrace();
         }

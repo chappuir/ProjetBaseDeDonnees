@@ -19,6 +19,8 @@ public class Avion {
         this.nbHotesses = nbHotesses;
         this.modele = modele;
     }
+    
+    public Avion(){};
 
     public int getIdAvion() {
         return idAvion;

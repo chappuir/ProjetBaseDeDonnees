@@ -39,7 +39,7 @@ public class PiloteDAO extends DAO<Pilote>{
     }
     
     public String allPilotes(){
-        String clients = "idPilote -- Nom -- Prenom \n";
+        String clients = "idPilote -- Nom -- Prenom -- NbHeures \n";
        
         try{
             ResultSet result = this.connect.createStatement(
@@ -49,7 +49,8 @@ public class PiloteDAO extends DAO<Pilote>{
             while (result.next()) {
                clients += result.getInt("idPilote") + " -- ";
                clients += result.getString("nom") + " -- ";
-               clients += result.getString("prenom") + "\n";
+               clients += result.getString("prenom") + " -- ";
+               clients += result.getString("nbHeures") + "\n";
             }
         }
         
@@ -94,4 +95,39 @@ public class PiloteDAO extends DAO<Pilote>{
             e.printStackTrace();
         }
     }
+    
+    public String dureePilote(int idPilote) {
+        String res = "";
+
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery(
+                            "SELECT nbHeures FROM Pilote WHERE idPilote = " + idPilote);
+            while (result.next()) {
+                res += result.getInt("nbHeures");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+
+    }
+    
+    public void updatePil(int nvDuree, int idPilote){
+        try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE).executeQuery(
+                            "UPDATE Pilote SET nbHeures = " + nvDuree +
+                                    " WHERE idPilote = " + idPilote
+                    );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
 }    

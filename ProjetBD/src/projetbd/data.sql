@@ -59,7 +59,7 @@ insert into PLACE values (3, 2, 2, 2);
 
 insert into VOL values (1, 'Paris', 'Tanger', '15', '18', 3.0, '2010', 2); 
 insert into VOL values (2, 'Madrid', 'Milan', '23', '2', 3.0, '450', 3);
-insert into VOL values (3, 'Paris', 'Pékin', '19', '20', 25.0, '8212', 1);
+insert into VOL values (3, 'Paris', 'Pekin', '19', '20', 25.0, '8212', 1);
 
 
 insert into AFFECTATION_PILOTE values (1, 2);
