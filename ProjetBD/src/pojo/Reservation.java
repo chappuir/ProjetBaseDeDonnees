@@ -50,7 +50,11 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" + "idReservation=" + idReservation + ", dateRes=" + dateRes + ", client=" + client.getIdClient() + '}';
+        String resa = "";
+        resa += "idReservation : " + this.idReservation + "\n" +
+                "Date : " + this.dateRes + "\n" + 
+                "Client : " + this.client.getNom() + " " + this.client.getPrenom();
+        return resa;
     }
     
    

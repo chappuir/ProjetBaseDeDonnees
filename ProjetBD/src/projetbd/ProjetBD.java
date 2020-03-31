@@ -34,6 +34,8 @@ public class ProjetBD {
   	    // Etablissement de la connection
             Statement requete = TheConnection.getInstance().createStatement();
             
+            Connection connect = TheConnection.getInstance();
+            
             //Exemple requete
             /*ResultSet resultat = requete.executeQuery("SELECT nom FROM Pilote");
   	    while(resultat.next()) { // récupération des résultats
@@ -64,8 +66,14 @@ public class ProjetBD {
             System.out.println(resaDAO.AllReservations());
             */
             
+            //6
+            ArrayList<Reservation> resaCli = ReservationDAO.listeReservationsClient(4);
+            for(Reservation r : resaCli){
+                System.out.println(r);
+            }
+            
             //8
-            //Connexion
+            /*//Connexion
             Connection connect = TheConnection.getInstance();
             
             //Clients
@@ -74,7 +82,7 @@ public class ProjetBD {
             //DAO<Client> clientDAO = DAOFactory.getClientDAO();
             
             //Reéservation du client
-            ReservationDAO resaDAO = new ReservationDAO(connect);
+            //ReservationDAO resaDAO = new ReservationDAO(connect);
             
             ArrayList<Reservation> resaCli = ReservationDAO.listeReservationsClient(1);
             for(Reservation r : resaCli){
@@ -97,6 +105,9 @@ public class ProjetBD {
             
             //Suppression Reservation
             resaDAO.deleteReservation(1);
+            
+            //Fin *
+            */
   
             //Affiche un client
             //Client cli = clientDAO.find(4);
