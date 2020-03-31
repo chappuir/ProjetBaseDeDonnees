@@ -280,6 +280,7 @@ public class ProjetBD {
                     System.out.println("Commande de base non reconnue \n");
                 }
             } while (! commande.equals("quitter"));
+                    
 
             
             
@@ -343,6 +344,8 @@ public class ProjetBD {
             //Affichage de tout les vols
             VolDAO vDAO = new VolDAO(connect);
             System.out.println(vDAO.allVols());
+            
+            
             //4
             System.out.println(vDAO.findVol(1));
             Affectation_PiloteDAO affDAO = new Affectation_PiloteDAO(connect);

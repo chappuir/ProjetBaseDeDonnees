@@ -108,7 +108,7 @@ public class VolDAO extends DAO<Vol>{
                vols += result.getFloat("duree") + " -- ";
                vols += result.getInt("distance") + " -- ";
                vols += result.getString("idAvion") + " -- ";
-               vols += result.getString("termine");
+               vols += result.getString("termine") + " \n";
             }
         }
         
@@ -125,7 +125,7 @@ public class VolDAO extends DAO<Vol>{
         try {
             ResultSet result = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Vol SET termine = T WHERE idPilote = " + leVol);
+                    ResultSet.CONCUR_UPDATABLE).executeQuery("UPDATE Vol SET termine = 1 WHERE idVol = " + leVol);
         } 
         catch (SQLException e) 
         {
