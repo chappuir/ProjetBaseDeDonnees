@@ -6,6 +6,8 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import pojo.Affectation_Pilote;
 
 /**
@@ -38,4 +40,14 @@ public class Affectation_PiloteDAO extends DAO<Affectation_Pilote> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public void deletePil(int idPilote) {
+       try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE).executeQuery(
+                            "DELETE FROM Affectation_Pilote WHERE idPilote = " + idPilote);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

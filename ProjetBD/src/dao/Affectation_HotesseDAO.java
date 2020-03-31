@@ -7,6 +7,8 @@ package dao;
 
 import java.sql.Connection;
 import pojo.Affectation_Hotesse;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -36,6 +38,17 @@ public class Affectation_HotesseDAO extends DAO<Affectation_Hotesse>{
     @Override
     public void delete(Affectation_Hotesse obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void deleteAft_Hotesse(int idHotesse) {
+       try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE).executeQuery(
+                            "DELETE FROM Affectation_Hotesse WHERE idHotesse = " + idHotesse);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
 }

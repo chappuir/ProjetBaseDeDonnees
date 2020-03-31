@@ -6,6 +6,8 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import pojo.Parler;
 
 /**
@@ -38,4 +40,14 @@ public class ParlerDAO extends DAO<Parler>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public void deleteParlerHot(int idHotesse) {
+       try {
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE).executeQuery(
+                            "DELETE FROM Parler WHERE idHotesse = " + idHotesse);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

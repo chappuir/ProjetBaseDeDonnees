@@ -76,8 +76,8 @@ public class ClientDAO extends DAO<Client>{
                             "SELECT * FROM Client");
             while (result.next()) {
                clients += result.getInt("idClient") + " -- ";
-               clients += result.getString("Nom") + " -- ";
-               clients += result.getString("Prenom") + "\n";
+               clients += result.getString("nom") + " -- ";
+               clients += result.getString("prenom") + "\n";
             }
         }
         

@@ -26,7 +26,7 @@ public class ProjetBD {
         // TODO code application logic here
         
        try {
-  	    // Enregistrement du driver Oracle
+  	    //Enregistrement du driver Oracle
   	    //System.out.print("Loading Oracle driver... "); 
   	    //DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());  	    
             //System.out.println("loaded");
@@ -66,19 +66,69 @@ public class ProjetBD {
             System.out.println(resaDAO.AllReservations());
             */
             
+            //5
+            //Supression
+            
+            //PiloteDAO pilotesDAO = new PiloteDAO(connect);
+            //System.out.println(pilotesDAO.allPilotes());
+            
+            //HotesseDAO hotessesDAO = new HotesseDAO(connect);
+            //System.out.println(hotessesDAO.allHotesses());
+            
+            //Hotesse
+            //Affectation_HotesseDAO aft_hotDAO = new Affectation_HotesseDAO(connect);
+            //aft_hotDAO.deleteAft_Hotesse(1);
+            
+            //ParlerDAO parlerDAO = new ParlerDAO(connect);
+            //parlerDAO.deleteParlerHot(1);
+            
+            //HotesseDAO hotesseDAO = new HotesseDAO(connect);
+            //hotessesDAO.deleteHot(1);
+            
+            //Pilote
+            //Affectation_PiloteDAO aft_pilDAO = new Affectation_PiloteDAO(connect);
+            //aft_pilDAO.deletePil(1);
+            
+            //QualificationDAO qualifDAO = new QualificationDAO(connect);
+            //qualifDAO.deletePilQualif(1);
+            
+            //PiloteDAO piloteDAO = new PiloteDAO(connect);
+            //piloteDAO.deletePil(1);
+            
+            //Ajout
+            
+            //Pilote
+            //PiloteDAO pDAO = new PiloteDAO(connect);
+            //Pilote p = new Pilote(5, "Chappuis", "Robin", "20", "rue de la mort", "69000", "Lyon", "France", 0);
+            //pDAO.addPil(p);
+            
+            //Hotesse
+            //HotesseDAO hDAO = new HotesseDAO(connect);
+            //Hotesse h = new Hotesse(1, "Chappuis", "Robine", "20", "rue de la mort", "69000", "Lyon", "France", 0);
+            //hDAO.addHot(h);
+            
+            
+            
+            
             //6
-            ArrayList<Reservation> resaCli = ReservationDAO.listeReservationsClient(4);
+            /*
+            java.util.Scanner entree = new java.util.Scanner(System.in);
+            System.out.println("Donner l'id du Client: ");
+            int cli = entree.nextInt();
+            
+            ArrayList<Reservation> resaCli = ReservationDAO.listeReservationsClient(cli);
             for(Reservation r : resaCli){
                 System.out.println(r);
             }
+            */
             
             //8
             /*//Connexion
             Connection connect = TheConnection.getInstance();
             
             //Clients
-            ClientDAO clientDAO = new ClientDAO(connect);
-            System.out.println(clientDAO.allClients());
+            ClientDAO clientsDAO = new ClientDAO(connect);
+            System.out.println(clientsDAO.allClients());
             //DAO<Client> clientDAO = DAOFactory.getClientDAO();
             
             //Reéservation du client
